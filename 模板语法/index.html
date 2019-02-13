@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模板语法</title>
+</head>
+<body>
+    <!--
+    -->
+    <div id="app">
+        <h1>双大括号表达式</h1>
+        <p>{{ message }}</p>
+        <p>{{ message.toUpperCase() }}</p>
+        <p v-text="url"></p>
+        <p v-html="url"></p>
+        <hr>
+        <h1>强制数据绑定</h1>
+        <img src="src" alt="">
+        <img v-bind:src="src" alt="">
+        <img :src="src" alt="">
+        <hr>
+        <h1>绑定事件监听</h1>
+        <button onclick="test()">native onclick</button>
+        <button v-on:click="test">vue onclick</button>
+        <button @click="test2('jack')">vue onclick2</button>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+        const vm = new Vue({
+                el: '#app',
+                data: {
+                    message: "lalala",
+                    url: '<a href="http://www.baidu.com">go baidu</a>',
+                    src: "./vue-MVVM-1.png"
+                },
+                methods: {
+                    test() {
+                        console.log(this, event)
+                    },
+                    test2(val) {
+                        console.log(val)
+                    }
+                }
+            })
+
+        const test = () => console.log(this)
+    </script>
+</body>
+</html>
