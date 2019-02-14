@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>custom directive</title>
+</head>
+
+<body>
+    <!-- 指令有钩子函数 bind inserted update componentUpdated unbind-->
+    <div id="app">
+        <p v-my-uppercase="msg"></p>
+        <p v-my-lowcase="msg"></p>
+    </div>
+
+    <div id="app2">
+        <p v-my-uppercase="msg"></p>
+        <p v-my-lowcase="msg"></p>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+        Vue.config.devtools = true
+        //global
+        Vue.directive('my-uppercase', function (el, binding) {
+            console.log(el, binding)
+            el.textContent = binding.value.toUpperCase()
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'lala NINI'
+            },
+            //local
+            directives: {
+                'my-lowcase': function (el, binding) {
+                    el.textContent = binding.value.toLowerCase()
+                }
+            }
+        })
+
+        const vm2 = new Vue({
+            el: '#app2',
+            data: {
+                msg: 'lala aaddd'
+            }
+        })
+    </script>
+</body>
+
+</html>
