@@ -1,75 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>lifecycle</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <button @click="destroyVM">destroy VM</button>
-        <p v-if="isShow">Jack i feifei</p>
+      <button @click="destroyVM">destroy VM</button>
+      <p v-if="isShow">{{ msg }}</p>
     </div>
     <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
-        Vue.config.devtools = true
-        const vm = new Vue({
-            el: '#app',
-            data: {
-                isShow: true
-            },
-            methods: {
-                destroyVM() {
-                    this.$destroy()
-                }
-            },
-            beforeCreate() {
-                console.log(`beforeCrated`)
-                console.log(this.$data)
-                console.log(this.$el)
-            },
-            //can get data
-            // created()/mounted() senAjax or create aync task(setInterval)
-            created () {
-                console.log(`created`)
-                console.log(this.$data)
-                console.log(this.$el)
-            },
-            //can get before dom
-            beforeMount () {
-                console.log(`beforeMount`)
-                console.log(this.$data)
-                console.log(this.$el)
-            },
-            //can get replace dom
-            mounted () {
-                console.log(`mounted`)
-                console.log(this.$data)
-                console.log(this.$el)
-                this.intervalId = setInterval(() => {
-                    console.log(`-----------`)
-                    this.isShow = !this.isShow
-                }, 1000)
-            },
-            beforeUpdate () {
-                console.log(`beforeUpdate`)
-            },
-            updated () {
-                console.log(`updated`)
-            },
-            //clear event binding and clearInterval
-            beforeDestroy () {
-                console.log(`beforeDestroy`)
-                clearInterval(this.intervalId)
-            },
-            destroyed () {
-                console.log(`destroyed`)
-            }
-        })
+       
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          isShow: true,
+          msg: 'jack love feifei'
+        },
+        methods: {
+          destroyVM() {
+            this.$destroy()
+          }
+        },
+        beforeCreate() {
+          console.log(`beforeCrated`)
+          console.log(this.$data)
+          console.log(this.$el)
+          this.aaa = 'ccc'
+        },
+        // can get data
+        // created()/mounted() senAjax or create aync task(setInterval)
+        created() {
+          console.log(`created`)
+          console.log(this.$data)
+          console.log(this.$el)
+        },
+        //can get before dom
+        beforeMount() {
+          console.log(`beforeMount`)
+          console.log(this.$data)
+          console.log(this.$el)
+        },
+        //can get replace dom
+        mounted() {
+          console.log(`mounted`)
+          console.log(this.$data)
+          console.log(this.$el)
+          this.intervalId = setInterval(() => {
+            console.log(`-----------`)
+            this.isShow = !this.isShow
+          }, 2000)
+        },
+        beforeUpdate() {
+          console.log(`beforeUpdate`)
+        },
+        updated() {
+          console.log(`updated`)
+        },
+        //clear event binding and clearInterval
+        beforeDestroy() {
+          console.log(`beforeDestroy`)
+          clearInterval(this.intervalId)
+        },
+        destroyed() {
+          console.log(`destroyed`)
+        }
+      })
     </script>
-</body>
-
+  </body>
 </html>

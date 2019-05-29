@@ -1,89 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>event</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>modifiers</title>
     <style type="text/css">
-        .wrapper{
-            height: 200px;
-            width: 200px;
-            background: red;
-        }
-        .inner{
-            height: 100px;
-            width: 100px;
-            background: blue;
-        }
+      .wrapper {
+        height: 200px;
+        width: 200px;
+        background: red;
+      }
+      .inner {
+        height: 100px;
+        width: 100px;
+        background: blue;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app">
-        <h1>绑定监听</h1>
-        <button @click="test1">test1</button>
-        <button @click="test2('a')">test2</button>
-        <button @click="test3('a', $event)">test3</button>
-        <h1>事件修饰符</h1>
-        <a href="http://www.baidu.com" @click.prevent="goBaidu">go baidu</a>
-        <div class="wrapper" @click="wrapper">
-            <div class="inner" @click.stop="inner"></div>
-        </div>
-        <h1>按键修饰符</h1>
-        <input type="text" @keyup.13="press">
-        <input type="text" @keyup.enter="press2">
-        <input type="text" @keyup.alt.enter="press3">
-        <!-- this will fire even if Alt or Shift is also pressed -->
-        <button @click.ctrl="press4">A</button>
-        <!-- this will only fire when Ctrl and no other keys are pressed -->
-        <button @click.ctrl.exact="press5">A</button>
-        <!-- this will only fire when no system modifiers are pressed -->
-        <button @click.exact="press6">A</button>
+      <h3>绑定监听</h3>
+      <button @click="test1">test1</button>
+      <button @click="test2('a')">test2</button>
+      <button @click="test3('a', $event)">test3</button>
+      <h3>事件修饰符</h3>
+      <a href="http://www.baidu.com" @click.prevent="goBaidu">go baidu</a>
+      <div class="wrapper" @click="wrapper">
+        <div class="inner" @click.stop="inner"></div>
+      </div>
+      <h3>按键修饰符</h3>
+      <input type="text" @keyup.13="press" />
+      <input type="text" @keyup.enter="press2" />
+      <input type="text" @keyup.alt.enter="press3" />
+      <br />
+      <!-- this will fire even if Alt or Shift is also pressed -->
+      <button @click.ctrl="press4">A</button>
+      <!-- this will only fire when Ctrl and no other keys are pressed -->
+      <button @click.ctrl.exact="press5">B</button>
+      <!-- this will only fire when no system modifiers are pressed -->
+      <button @click.exact="press6">C</button>
     </div>
     <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
-        Vue.config.devtools = true
-        const vm = new Vue({
-                el: '#app',
-                methods: {
-                    test1() {
-                        console.log(event)
-                    },
-                    test2(msg) {
-                        console.log(msg)
-                    },
-                    test3(msg, event) {
-                        console.log(msg, event.target.innerHTML)
-                    },
-                    goBaidu() {
-                        console.log(`goBaidu`)
-                    },
-                    wrapper() {
-                        console.log(`wrapper`)
-                    },
-                    inner() {
-                        console.log(`inner`)
-                    },
-                    press() {
-                        console.log(event.keyCode)
-                    },
-                    press2() {
-                        console.log(event.keyCode)
-                    },
-                    press3() {
-                        console.log(event.keyCode)
-                    },
-                    press4() {
-                        console.log(event.keyCode)
-                    },
-                    press5() {
-                        console.log(event.keyCode)
-                    },
-                    press6() {
-                        console.log(event.keyCode)
-                    }
-                }
-            })
+      const vm = new Vue({
+        el: '#app',
+        methods: {
+          test1(e) {
+            console.log(e)
+          },
+          test2(msg) {
+            console.log(msg)
+          },
+          test3(msg, event) {
+            console.log(msg, event.target.innerHTML)
+          },
+          goBaidu() {
+            console.log(`goBaidu`)
+          },
+          wrapper() {
+            console.log(`wrapper`)
+          },
+          inner() {
+            console.log(`inner`)
+          },
+          press(e) {
+            console.log(e.keyCode)
+          },
+          press2() {
+            console.log(event.keyCode)
+          },
+          press3() {
+            console.log(event.keyCode)
+          },
+          press4(e) {
+            console.log(e.keyCode)
+          },
+          press5() {
+            console.log(event.keyCode)
+          },
+          press6() {
+            console.log(event.keyCode)
+          }
+        }
+      })
     </script>
-</body>
+  </body>
 </html>

@@ -1,76 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>form</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <form action="" @submit.prevent="submit">
-            <input type="text" v-model="message" placeholder="Pls input"><br>
-            <input type="password" v-model="pwd"><br>
-            <textarea name="" id="" cols="30" rows="10" v-model="mulmessage"></textarea><br>
-            <input type="checkbox" id="checkbox" v-model="checked">
-            <label for="checkbox">{{ checked }}</label>
+      <form action="" @submit.prevent="submit">
+        name:
+        <input type="text" v-model="message" placeholder="Pls input" />
+        password:<input type="password" v-model="pwd" /><br />
+        multiText:<textarea
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+          v-model="mulmessage"
+        ></textarea
+        ><br />
+        <input type="checkbox" id="checkbox" v-model="checked" />
+        <label for="checkbox">{{ checked }}</label>
 
-            <div id="mulcheckbox">
-                <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-                <label for="jack">Jack</label>
-                <input type="checkbox" id="john" value="John" v-model="checkedNames">
-                <label for="john">John</label>
-                <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-                <label for="mike">Mike</label>
-            </div>
+        <div id="mulcheckbox">
+          <input
+            type="checkbox"
+            id="jack"
+            value="Jack"
+            v-model="checkedNames"
+          />
+          <label for="jack">Jack</label>
+          <input
+            type="checkbox"
+            id="john"
+            value="John"
+            v-model="checkedNames"
+          />
+          <label for="john">John</label>
+          <input
+            type="checkbox"
+            id="mike"
+            value="Mike"
+            v-model="checkedNames"
+          />
+          <label for="mike">Mike</label>
+          checkedNames is : {{ checkedNames }}
+        </div>
 
-            <input type="radio" id="one" value="One" v-model="picked">
-            <label for="one">One</label>
-            <input type="radio" id="two" value="Two" v-model="picked">
-            <label for="two">Two</label><br>
+        <input type="radio" id="one" value="One" v-model="picked" />
+        <label for="one">One</label>
+        <input type="radio" id="two" value="Two" v-model="picked" />
+        <label for="two">Two</label> picked is : {{ picked }}<br />
 
-            <select v-model="selected">
-                <option disabled value="">Please select one</option>
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
-            </select><br>
+        <select v-model="selected">
+          <option disabled value="">Please select one</option>
+          <option>A</option>
+          <option>B</option>
+          <option>C</option> </select
+        >selected is : {{ selected }}<br />
 
-            <select v-model="mulSelected" multiple>
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
-            </select> <br>
-            <input type="reset" value="reset">
-            <input type="submit" value="submit">
-        </form>
+        <select v-model="mulSelected" multiple>
+          <option>A</option>
+          <option>B</option>
+          <option>C</option>
+        </select>
+        mulSelected is : {{ mulSelected }}
+        <br />
+        <input type="reset" value="reset" />
+        <input type="submit" value="submit" />
+      </form>
     </div>
     <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
-        Vue.config.devtools = true
-        const vm = new Vue({
-            el: '#app',
-            data: {
-                message: '',
-                pwd: '',
-                mulmessage: '',
-                checked: false,
-                checkedNames: [],
-                picked: '',
-                selected: '',
-                mulSelected: []
-            },
-            methods: {
-                submit() {
-                    for (let i in this.$data) {
-                        console.log(this[i])
-                    }
-                }
+       
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          message: '',
+          pwd: '',
+          mulmessage: '',
+          checked: false,
+          checkedNames: [],
+          picked: '',
+          selected: '',
+          mulSelected: []
+        },
+        methods: {
+          submit() {
+            for (let prop in this.$data) {
+              console.log(this[prop])
             }
-        })
+          }
+        }
+      })
     </script>
-</body>
-
+  </body>
 </html>

@@ -1,84 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>animation</title>
     <style type="text/css">
-        .fade-enter-active,.fade-leave-active {
-            transition: opacity .5s;
-        }
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: opacity 0.5s;
+      }
 
-        .fade-enter,.fade-leave-to {
-            opacity: 0;
-        }
-        .move-enter-active {
-            transition: all 1s
-        }
+      .fade-enter,
+      .fade-leave-to {
+        opacity: 0;
+      }
+      .move-enter-active {
+        transition: all 1s;
+      }
 
-        .move-leave-active {
-            transition: all 3s
-        }
+      .move-leave-active {
+        transition: all 3s;
+      }
 
-        .move-enter, .move-leave-to {
-            opacity: 0;
-            transform: translateX(20px)
-        }
+      .move-enter,
+      .move-leave-to {
+        opacity: 0;
+        transform: translateX(20px);
+      }
 
-        .bounce-enter-active {
-            animation: bounce-in .5s;
+      .bounce-enter-active {
+        animation: bounce-in 0.5s;
+      }
+      .bounce-leave-active {
+        animation: bounce-in 0.5s reverse;
+      }
+      @keyframes bounce-in {
+        0% {
+          transform: scale(0);
         }
-        .bounce-leave-active {
-            animation: bounce-in .5s reverse;
+        50% {
+          transform: scale(1.5);
         }
-        @keyframes bounce-in {
-            0% {
-                transform: scale(0);
-            }
-            50% {
-                transform: scale(1.5);
-            }
-            100% {
-                transform: scale(1);
-            }
+        100% {
+          transform: scale(1);
         }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <button @click="isShow=!isShow">toggle</button>
-        <transition name="fade">
-            <p v-if="isShow">lalalalalla</p>
-        </transition>
-        <button @click="isShow2=!isShow2">toggle</button>
-        <transition name="move">
-            <p v-if="isShow2">ddddddddddddd</p>
-        </transition>
-        <button @click="isShow3 = !isShow3">Toggle show</button>
-        <br>
-        <transition name="bounce">
-            <p v-if="isShow3" style="display: inline-block">Lorem</p>
-        </transition>
+      <button @click="isShow=!isShow">toggle</button>
+      <transition name="fade">
+        <p v-if="isShow">lalalalalla</p>
+      </transition>
+      <button @click="isShow2=!isShow2">toggle</button>
+      <transition name="move">
+        <p v-if="isShow2">ddddddddddddd</p>
+      </transition>
+      <button @click="isShow3 = !isShow3">Toggle show</button>
+      <br />
+      <transition name="bounce">
+        <p v-if="isShow3" style="display: inline-block">Lorem</p>
+      </transition>
     </div>
     <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
-        Vue.config.devtools = true
-        const vm = new Vue({
-            el: '#app',
-            data() {
-                return {
-                    isShow: true,
-                    isShow2: true,
-                    isShow3: true
-                }
-            },
-            methods: {
-            }
-        })
+       
+      const vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+            isShow: true,
+            isShow2: true,
+            isShow3: true
+          }
+        }
+      })
     </script>
-</body>
-
+  </body>
 </html>

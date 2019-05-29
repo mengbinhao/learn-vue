@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>ref and cloak</title>
     <style type="text/css">
-        [v-cloak] {
-            display: none;
-        }
+      [v-cloak] {
+        display: none;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app">
-        <p ref="content">Jack alalal</p>
-        <button @click="test">click</button>
-        <p>{{ msg }}</p>
+      <p ref="content">Jack</p>
+      <button @click="test">click</button>
+      <p v-cloak>{{ msg }}</p>
     </div>
     <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
-        Vue.config.devtools = true
-        //alert('----')
-        const vm = new Vue({
-                el: '#app',
-                data: {
-                    msg: 'xxxxxxxxxxxxxxxx'
-                },
-                methods: {
-                    test() {
-                        console.log(this.$refs.content.textContent)
-                    }
-                }
-            })
+      alert('----')
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'xxxxxxxxxxxxxxxx'
+        },
+        methods: {
+          test() {
+            console.log(this.$refs.content.textContent)
+          }
+        }
+      })
     </script>
-</body>
+  </body>
 </html>

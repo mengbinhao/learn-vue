@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>computed and watch</title>
-</head>
-<body>
+  </head>
+  <body>
     <!--
     1. 计算属性
         在computed属性对象中定义计算属性的方法
         在页面中使用{{ 方法名 }}来显示计算的结果
     2. 监视属性:
-        通过通过vm对象的$watch()或watch配置来监视指定的属性
+        通过vm对象的$watch()或watch配置来监视指定的属性
         当属性变化时, 回调函数自动调用, 在函数内部进行计算
     3. 计算属性高级:
         通过getter/setter实现对属性数据的显示和监视
@@ -20,53 +20,50 @@
     4. 计算属性不需要在data里面提前define，watch需要
     -->
     <div id="app">
-        firstName: <input type="text" v-model="firstName"> <br>
-        lastName: <input type="text" v-model="lastName"> <br>
-        fullName1: <input type="text" v-model="fullName1"> <br>
-        fullName2: <input type="text" v-model="fullName2"> <br>
-        fullName3: <input type="text" v-model="fullName3"> <br>
-        <p>{{ fullName1 }}</p>
-        <p>{{ fullName1 }}</p>
-        <p>{{ fullName1 }}</p>
+      firstName: <input type="text" v-model="firstName" /> <br />
+      lastName: <input type="text" v-model="lastName" /> <br />
+      fullName1: <input type="text" v-model="fullName1" /> <br />
+      watch fullName2: <input type="text" v-model="fullName2" /> <br />
+      fullName3: <input type="text" v-model="fullName3" /> <br />
+      <p>{{ fullName1 }}</p>
+      <p>{{ fullName1 }}</p>
+      <p>{{ fullName1 }}</p>
     </div>
     <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
-        Vue.config.devtools = true
-        const vm = new Vue({
-                el: '#app',
-                data: {
-                    firstName: 'Jack',
-                    lastName: 'Meng',
-                    fullName2: ''
-                },
-                computed: {
-                    fullName1() {
-                        //console.log(this)
-                        return this.firstName + " " + this.lastName
-                    },
-                    //get set 对象写法
-                    fullName3: {
-                        get() {
-                            return this.firstName + " " + this.lastName
-                        },
-                        set(val) {
-                            const name = val.split(' ')
-                            this.firstName = name[0]
-                            name.length > 1 ? this.lastName = name[1] : this.lastName = ''
-                        }
-                    }
-                },
-                watch: {
-                    firstName(newVal,oldVal) {
-                        this.fullName2 = newVal + " " + this.lastName
-                    }
-                }
-            })
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          firstName: 'Jack',
+          lastName: 'Meng',
+          fullName2: ''
+        },
+        computed: {
+          fullName1() {
+            return this.firstName + ' ' + this.lastName
+          },
+          //get / set
+          fullName3: {
+            get() {
+              return this.firstName + ' ' + this.lastName
+            },
+            set(val) {
+              const name = val.split(' ')
+              this.firstName = name[0]
+              name.length > 1 ? (this.lastName = name[1]) : (this.lastName = '')
+            }
+          }
+        },
+        watch: {
+          firstName(newVal, oldVal) {
+            this.fullName2 = newVal + ' ' + this.lastName
+          }
+        }
+      })
 
-            vm.$watch('lastName', function (newVal,oldVal) {
-                //console.log(this)
-                this.fullName2 = this.firstName + " " + newVal
-            })
+      vm.$watch('lastName', function(newVal, oldVal) {
+        this.fullName2 = this.firstName + ' ' + newVal
+      })
     </script>
-</body>
+  </body>
 </html>
